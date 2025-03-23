@@ -266,6 +266,7 @@
             <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
     </section>
+
     <!-- FOOTER SECTION -->
 
     <footer class="footer">
@@ -277,6 +278,7 @@
             <a href="#home"> <i class="fa-solid fa-angle-up"></i></a>
         </div>
     </footer>
+
     <!-- SCROLL REVEAL JS -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
@@ -284,10 +286,26 @@
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
 
-    <script src="./assets/JS/main.js"></script>
+    <script src="./assets/js/main.js"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
+        /* ===================== Form Section ======================================= */
+        (function () {
+            emailjs.init("r2CTl6MqrnXAmPVj0");
+        })();
 
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_bxcwdz6', 'template_gokrscp', this)
+                .then(function () {
+                    alert('Message sent successfully!');
+                    document.getElementById('contact-form').reset();
+                }, function (error) {
+                    alert('Failed to send message. Please try again.');
+                    console.error('EmailJS Error:', error);
+                });
+        });
     </script>
 
 
